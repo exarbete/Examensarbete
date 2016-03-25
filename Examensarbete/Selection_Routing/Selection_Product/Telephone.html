@@ -1,0 +1,13 @@
+﻿<div ng-controller="TelephoneController">
+    <h2>Telefon Page</h2>
+
+    <ul>
+
+        <li ng-repeat="SubCategory in SiteSubCategory | filter:{ ParentID: 2 }">
+            <a href="#">{{SubCategory.MenuName}}</a>
+
+        </li>
+    </ul>
+
+</div>
+

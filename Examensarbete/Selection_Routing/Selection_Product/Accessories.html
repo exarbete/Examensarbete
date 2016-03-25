@@ -1,0 +1,13 @@
+﻿<div ng-controller="AccessoriesController">
+    <h2>Tillbehör Page.............................</h2>
+    <ul>
+
+        <li ng-repeat="SubCategory in SiteSubCategory | filter:{ ParentID: 3 }">
+            <a href="#">{{SubCategory.MenuName}}</a>
+
+        </li>
+    </ul>
+
+    <input type="button" value="Submit" ng-click="btnfun()" />
+
+</div>

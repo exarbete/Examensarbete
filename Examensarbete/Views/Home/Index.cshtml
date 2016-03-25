@@ -1,0 +1,50 @@
+﻿@{
+        Layout = null;
+}
+
+<html ng-app="pageRoutingApp">
+<head>
+
+    <title>ElWebshop</title>
+    <base href="/">
+    @Styles.Render("~/bundles/ELwebshop/style")
+    @Scripts.Render("~/bundles/ELwebshop/script")
+
+</head>
+<body>
+    @*<div>
+        <ul class="menu">
+            <li>
+                <a href="#/home">Home</a>
+                <a href="#/computer">Dator</a>
+                <a href="#/mobile">Mobil</a>
+                <a href="#/accessories">Tillbehör</a>
+            </li>
+        </ul>
+    </div>*@
+
+
+    <div class="dynamicmenu" ng-controller="menuController">
+        @* ng-template *@
+        <script type="text/ng-template" id="treeMenu">
+            <a href="{{menu.Url}}">{{menu.MenuName}}</a>
+            @* When submenu are available *@
+            <ul ng-if="(SiteMenu | filter:{ParentID : menu.MenuID}).length > 0">
+                <li ng-repeat="menu in SiteMenu | filter:{ParentID : menu.MenuID}" ng-include="'treeMenu'"><a href="{{menu.Url}}">{{menu.MenuName}}</a></li>
+            </ul>
+        </script>
+        <ul class="main-navigation">
+            @* Top level menu *@
+            <li ng-repeat="menu in SiteMenu | filter:{ParentID : 0}" ng-include="'treeMenu'"></li>
+
+        </ul>      
+        
+    </div>
+    <br />
+    <div class="selectedPageView">
+        
+        <ng-view></ng-view>
+    </div>
+
+</body>
+</html>
